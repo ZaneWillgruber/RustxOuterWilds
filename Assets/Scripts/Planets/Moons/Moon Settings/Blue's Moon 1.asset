@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db9dda392c4dd14c9fe63725c6f29b9, type: 3}
+  m_Name: Blue's Moon 1
+  m_EditorClassIdentifier: 
+  randomize: 0
+  seed: 0
+  heightMapCompute: {fileID: 7200000, guid: 21b1f17782bf8b849a400cfdf521e26c, type: 3}
+  perturbVertices: 1
+  perturbCompute: {fileID: 7200000, guid: 293a112f62605054aa4d46f64cef85a1, type: 3}
+  perturbStrength: 0.575
+  craterSettings:
+    enabled: 1
+    craterSeed: 5
+    numCraters: 500
+    craterSizeMinMax: {x: 0.01, y: 0.15}
+    rimSteepness: 0.42
+    rimWidth: 1.23
+    smoothMinMax: {x: 0.4, y: 1.5}
+    sizeDistribution: 0.675
+    cachedCraters: []
+  shapeNoise:
+    numLayers: 4
+    lacunarity: 2
+    persistence: 0.5
+    scale: 0.97
+    elevation: 0
+    verticalShift: 0
+    offset: {x: 0, y: 0, z: 0}
+  ridgeNoise:
+    numLayers: 4
+    lacunarity: 5
+    persistence: 0.5
+    scale: 1.82
+    power: 2
+    elevation: -2.84
+    gain: 0.5
+    verticalShift: 0
+    peakSmoothing: 3
+    offset: {x: 0, y: 0, z: 0}
+  ridgeNoise2:
+    numLayers: 5
+    lacunarity: 2
+    persistence: 0.5
+    scale: 2
+    power: 0.5
+    elevation: 3
+    gain: 1
+    verticalShift: 0
+    peakSmoothing: 0
+    offset: {x: 0, y: 0, z: 0}
+  testParams: {x: 0, y: 0, z: 1, w: 23.11}
