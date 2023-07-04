@@ -6,18 +6,21 @@ public class GravityController : MonoBehaviour
 {
 
     public GameObject referencePlanet;
-    CharacterController controller;
+    Rigidbody rb;
     Vector3 velocity;
+    bool grounded;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        grounded = GetComponent<PlayerMovement>().grounded;
+
         //find closest planet
         float closestDistance = Mathf.Infinity;
         foreach (GameObject planet in GameObject.FindGameObjectsWithTag("Planet"))
@@ -31,9 +34,12 @@ public class GravityController : MonoBehaviour
         }
 
         //rotate to land on planet
-        Vector3 dir = (transform.position - referencePlanet.transform.position).normalized;
-        Quaternion toRotation = Quaternion.FromToRotation(transform.up, dir) * transform.rotation;
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 0.1f);
+        if (grounded)
+        {
+            Vector3 dir = (transform.position - referencePlanet.transform.position).normalized;
+            Quaternion toRotation = Quaternion.FromToRotation(transform.up, dir) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, .01f);
+        }
 
 
         //apply gravity if in gravity collider
@@ -41,11 +47,11 @@ public class GravityController : MonoBehaviour
         if (gravityCollider.bounds.Contains(transform.position))
         {
             Vector3 gravityDirection = (transform.position - referencePlanet.transform.position).normalized;
-            float gravity = ((referencePlanet.GetComponent<Planet>().mass * GetComponent<Rigidbody>().mass)) / Mathf.Pow(closestDistance, 2);
-            Debug.Log(gravity);
-            //GetComponent<Rigidbody>().AddForce(gravityDirection * 10, ForceMode.Acceleration);
-            velocity += gravityDirection * -gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+            //float gravity = ((referencePlanet.GetComponent<Planet>().mass * GetComponent<Rigidbody>().mass)) / Mathf.Pow(closestDistance, 2);
+            float sqrDist = (transform.position - referencePlanet.transform.position).sqrMagnitude;
+
+            Vector3 gravity = gravityDirection * Universe.gravitationalConstant * referencePlanet.GetComponent<Rigidbody>().mass / sqrDist;
+            GetComponent<Rigidbody>().AddForce(-gravity, ForceMode.Acceleration);
         }
     }
 }
