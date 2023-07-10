@@ -32,8 +32,7 @@ public class GravityObject : MonoBehaviour
         }
 
         //apply gravity if in gravity collider
-        SphereCollider gravityCollider = referencePlanet.GetComponent<Planet>().gravityCollider;
-        if (gravityCollider.bounds.Contains(transform.position))
+        if (referencePlanet != null)
         {
             Vector3 gravityDirection = (transform.position - referencePlanet.transform.position).normalized;
             //float gravity = ((referencePlanet.GetComponent<Planet>().mass * GetComponent<Rigidbody>().mass)) / Mathf.Pow(closestDistance, 2);

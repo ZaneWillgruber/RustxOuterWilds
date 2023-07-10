@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ffd14b561d72b2479ef6a73c794f4d2, type: 3}
+  m_Name: Shape
+  m_EditorClassIdentifier: 
+  randomize: 0
+  seed: 0
+  heightMapCompute: {fileID: 7200000, guid: 8e5584e53c2cd8d42b1657a553df7621, type: 3}
+  perturbVertices: 1
+  perturbCompute: {fileID: 7200000, guid: 004f659a1814d2742b99922da186e02e, type: 3}
+  perturbStrength: 0.684
+  oceanDepthMultiplier: 5
+  oceanFloorDepth: 1.36
+  oceanFloorSmoothing: 0.5
+  mountainBlend: 1
+  continentNoise:
+    numLayers: 6
+    lacunarity: 2
+    persistence: 0.5
+    scale: 1
+    elevation: 2.64
+    verticalShift: 0
+    offset: {x: 0, y: 0, z: 0}
+  maskNoise:
+    numLayers: 3
+    lacunarity: 1.66
+    persistence: 0.55
+    scale: 1.09
+    elevation: 1
+    verticalShift: 0.02
+    offset: {x: 0, y: 0, z: 0}
+  ridgeNoise:
+    numLayers: 5
+    lacunarity: 4
+    persistence: 0.5
+    scale: 1.5
+    power: 2.18
+    elevation: 8.7
+    gain: 0.8
+    verticalShift: 0.09
+    peakSmoothing: 1
+    offset: {x: 0, y: 0, z: 0}
+  testParams: {x: 0, y: 0.44, z: 5, w: 4.93}
