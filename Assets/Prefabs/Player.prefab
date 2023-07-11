@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3639594004172397951}
   - component: {fileID: 3639594004172397950}
   - component: {fileID: 3639594004172397923}
+  - component: {fileID: 4740947391900187401}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -153,6 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referencePlanet: {fileID: 0}
+  rotate: 0
+  whatIsPlanet:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!54 &3639594004172397950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,10 +184,24 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.58987904
-  m_Height: 3.5918217
+  m_Radius: 0.6067127
+  m_Height: 3.5944362
   m_Direction: 1
-  m_Center: {x: 0.00000011920929, y: 0.00830555, z: 0}
+  m_Center: {x: 0.011606574, y: -0.007494211, z: 0}
+--- !u!136 &4740947391900187401
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639594004172397922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.9974165
+  m_Height: 4.598954
+  m_Direction: 1
+  m_Center: {x: -0.019506454, y: -0.0048766136, z: 0}
 --- !u!1 &3639594004511229880
 GameObject:
   m_ObjectHideFlags: 0

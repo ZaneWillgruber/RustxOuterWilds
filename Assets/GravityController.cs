@@ -9,6 +9,8 @@ public class GravityController : MonoBehaviour
     Rigidbody rb;
     Vector3 velocity;
     bool grounded;
+    public bool rotate = false;
+    public LayerMask whatIsPlanet;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,7 @@ public class GravityController : MonoBehaviour
         }
 
         //rotate to land on planet
-        if (grounded)
+        if (rotate)
         {
             Vector3 dir = (transform.position - referencePlanet.transform.position).normalized;
             Quaternion toRotation = Quaternion.FromToRotation(transform.up, dir) * transform.rotation;
@@ -51,6 +53,25 @@ public class GravityController : MonoBehaviour
 
             Vector3 gravity = gravityDirection * Universe.gravitationalConstant * referencePlanet.GetComponent<Rigidbody>().mass / sqrDist;
             GetComponent<Rigidbody>().AddForce(-gravity, ForceMode.Acceleration);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger entered");
+        Debug.Log(other.gameObject.layer);
+        if (other.gameObject.layer == 3)
+        {
+            Debug.Log("Trigger entered rotate");
+            rotate = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 3)
+        {
+            rotate = false;
         }
     }
 }

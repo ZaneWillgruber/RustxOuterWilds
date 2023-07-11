@@ -38,6 +38,5 @@ public class PlayerSpawnManager : MonoBehaviour
         Vector3 randomPointOnSurfaceWorldSpace = planet.transform.TransformPoint(randomPointOnSurface);
         GameObject player = Instantiate(playerPrefab);
         player.transform.position = randomPointOnSurfaceWorldSpace + randomPointOnSurface.normalized * 2f;
-        player.GetComponent<Rigidbody>().velocity = planet.GetComponent<Rigidbody>().velocity;
     }
 }
