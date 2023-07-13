@@ -5,6 +5,7 @@ using UnityEngine;
 public class SolarSystemSpawner : MonoBehaviour {
 
 	public CelestialBodyGenerator.ResolutionSettings resolutionSettings;
+	public TreeSpawner treeSpawner;
 
 	void Awake () {
 		Spawn (0);
@@ -41,6 +42,7 @@ public class SolarSystemSpawner : MonoBehaviour {
 		}
 
 		Debug.Log ("Generation time: " + sw.ElapsedMilliseconds + " ms.");
+		treeSpawner.SpawnTrees();
 	}
 
 }

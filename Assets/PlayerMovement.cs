@@ -23,11 +23,13 @@ public class PlayerMovement : MonoBehaviour
     public ForceMode forceMode;
     Vector3 moveAmount;
     Vector3 smoothMoveVelocity;
+    GravityController gravityController;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gravityController = GetComponent<GravityController>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -53,17 +55,6 @@ public class PlayerMovement : MonoBehaviour
             speed = spaceSpeed;
         }
 
-        // if (moving == true && (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0))
-        // {
-        //     // rb.AddForce(referencePlanet.GetComponent<Rigidbody>().velocity, forceMode);
-        //     rb.velocity = referencePlanet.GetComponent<Rigidbody>().velocity;
-        //     moving = false;
-        // }
-        // else if (moving == false && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
-        // {
-        //     moving = true;
-        // }
-
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
@@ -74,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (grounded)
+        if (gravityController.rotate)
         {
             MovePlayer();
         }

@@ -58,11 +58,8 @@ public class GravityController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered");
-        Debug.Log(other.gameObject.layer);
         if (other.gameObject.layer == 3)
         {
-            Debug.Log("Trigger entered rotate");
             rotate = true;
         }
     }
