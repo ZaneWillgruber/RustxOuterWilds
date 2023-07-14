@@ -13,6 +13,7 @@ public class TreeSpawner : MonoBehaviour
     Vector3 debugRaycastDirection;
     Vector3 debugRaycastOrigin;
     public Transform testCube;
+    float waterLevel;
 
     public bool run = false;
     // Start is called before the first frame update
@@ -105,6 +106,7 @@ public class TreeSpawner : MonoBehaviour
 
     void SpawnTrees(Planet planet)
     {
+        waterLevel = planet.radius;
         for (int i = 0; i < numTrees; i++)
         {
             float latitude = Random.Range(0f, 360f);
@@ -120,7 +122,6 @@ public class TreeSpawner : MonoBehaviour
 
             GameObject tree = Instantiate(treePrefab);
             tree.transform.position = spawnPosition;
-            Debug.Log(spawnPosition);
             tree.transform.parent = planet.transform;
 
 
@@ -152,11 +153,13 @@ public class TreeSpawner : MonoBehaviour
         if (Physics.Raycast(origin, -(origin - planetCenter.position), out hit, planetRadius * 2f, surfaceLayerMask))
         {
 
-            Debug.Log("Tree spawn position found");
-            Debug.Log(spawnPosition);
-
-            //make sure tree is not spawned inside planet
-
+            if(Vector3.Distance(hit.point, planetCenter.position) < waterLevel)
+            {
+                Debug.LogWarning("Tree spawn position found but is in water");
+                //find new spawn position
+                // return CalculateSpawnPosition(longitude, latitude, planet);
+                return (spawnPosition, false);
+            }
 
             spawnPosition = hit.point;
             spawnPositionFound = true;
@@ -167,7 +170,7 @@ public class TreeSpawner : MonoBehaviour
             Debug.LogWarning("Tree spawn position not found. Adjust planetRadius or check surfaceLayerMask.");
             
         }
-        Debug.DrawRay(origin, -(origin - planetCenter.position), Color.red, 1000f);
+        // Debug.DrawRay(origin, -(origin - planetCenter.position), Color.red, 1000f);
 
         if (spawnPositionFound)
         {

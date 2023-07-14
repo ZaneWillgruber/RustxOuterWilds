@@ -6,6 +6,7 @@ public class SolarSystemSpawner : MonoBehaviour {
 
 	public CelestialBodyGenerator.ResolutionSettings resolutionSettings;
 	public TreeSpawner treeSpawner;
+	public PlayerSpawnManager playerSpawnManager;
 
 	void Awake () {
 		Spawn (0);
@@ -42,7 +43,15 @@ public class SolarSystemSpawner : MonoBehaviour {
 		}
 
 		Debug.Log ("Generation time: " + sw.ElapsedMilliseconds + " ms.");
+
+		//other spawners
 		treeSpawner.SpawnTrees();
+		if(GameObject.FindGameObjectsWithTag("Player").Length == 0)
+        {
+            playerSpawnManager.SpawnOnPlanet();
+            Debug.Log("Player spawned");
+        }
+		
 	}
 
 }
