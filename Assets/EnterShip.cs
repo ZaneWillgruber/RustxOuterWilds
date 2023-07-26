@@ -15,10 +15,6 @@ public class EnterShip : MonoBehaviour
     void Start()
     {
         player = transform.parent.gameObject;
-
-        //lock and hide cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     // Update is called once per frame
