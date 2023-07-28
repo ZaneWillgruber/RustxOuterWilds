@@ -7,6 +7,18 @@ public class ItemHandler : MonoBehaviour
     public Transform camera;
     public ItemContainer playerInventory;
 
+    void Update() {
+        //shoot ray from camera, if it hits an InteractableItem, pick it up
+        if(Input.GetKeyDown(KeyCode.E)) {
+            RaycastHit hit;
+            if(Physics.Raycast(camera.position, camera.forward, out hit, 5)) {
+                if(hit.collider.tag == "InteractableItem") {
+                    PickUpItem(hit.collider.gameObject);
+                }
+            }
+        }
+    }
+
     public void DropItem(ItemSlot slot) {
         Debug.Log("Dropping Item: " + slot.item.name);
 
