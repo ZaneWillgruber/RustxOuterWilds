@@ -72,4 +72,26 @@ public class ItemContainer : MonoBehaviour
         UISlots.Clear();
         parentWindow.SetActive(false);
     }
+
+    public void AddItem(ItemSlot item) {
+        int index = FindNextEmptySlot();
+
+        if (index == -1) {
+            Debug.Log("No Empty Slots");
+            return;
+        }
+
+        items[index] = item;
+        items[index].AttachUI(UISlots[index]);
+        
+    }
+
+    int FindNextEmptySlot() {
+        for(int i = 0; i < items.Count; i++) {
+            if (!items[i].hasItem)
+                return i;
+        }
+
+        return -1;
+    }
 }

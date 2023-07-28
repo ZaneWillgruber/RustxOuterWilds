@@ -26,4 +26,6 @@ public class Item : ScriptableObject
     public bool isStackable { get { return maxStack > 1; } }
     public bool isDegradable { get { return maxCondition > -1; } }
 
+    public GameObject interactableItem;
+
 }

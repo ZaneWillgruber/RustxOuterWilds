@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class ClickHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    public ItemHandler itemHandler;
     GraphicRaycaster raycaster;
     PointerEventData pointer;
     EventSystem eventSystem;
@@ -82,6 +83,12 @@ public class ClickHandler : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
         {
             endDragSlot = results[0].gameObject.GetComponent<UIItemSlot>();
             ProcessClick(endDragSlot);
+        }
+        else{ 
+            Debug.Log("No Slot Found, Dropping Item");
+            itemHandler.DropItem(cursor.itemSlot);
+            cursor.ClearSlot();
+            cursor.RefreshSlot();
         }
     }
 

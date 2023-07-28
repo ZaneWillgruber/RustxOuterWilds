@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 3639594004172397923}
   - component: {fileID: 4740947391900187401}
   - component: {fileID: 7477967144223590850}
+  - component: {fileID: -3357586711080894232}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -217,6 +218,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseLook: {fileID: 3639594004511229876}
   enterShip: {fileID: 3639594004511229877}
+  inventory: {fileID: 0}
+--- !u!114 &-3357586711080894232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639594004172397922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81720af93d8825c49886afbd9f58d929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 3639594004511229879}
 --- !u!1 &3639594004511229880
 GameObject:
   m_ObjectHideFlags: 0
