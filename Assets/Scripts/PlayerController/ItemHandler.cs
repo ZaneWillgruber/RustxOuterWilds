@@ -7,23 +7,47 @@ public class ItemHandler : MonoBehaviour
     public Transform camera;
     public ItemContainer playerInventory;
 
-    void Update() {
-        //shoot ray from camera, if it hits an InteractableItem, pick it up
-        if(Input.GetKeyDown(KeyCode.E)) {
-            RaycastHit hit;
-            if(Physics.Raycast(camera.position, camera.forward, out hit, 5)) {
-                if(hit.collider.tag == "InteractableItem") {
-                    PickUpItem(hit.collider.gameObject);
+    private Transform _selection;
+
+    void Update()
+    {
+        if (_selection != null)
+        {
+            var outline = _selection.GetComponent<Outline>();
+            outline.enabled = false;
+            _selection = null;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(camera.position, camera.forward, out hit, 5))
+        {
+            if (hit.collider.tag == "InteractableItem")
+            {
+                var selection = hit.transform;
+                var outline = selection.GetComponent<Outline>();
+                if (outline != null)
+                {
+                    outline.enabled = true;
                 }
+                _selection = selection;
+                //shoot ray from camera, if it hits an InteractableItem, pick it up
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    PickUpItem(selection.gameObject);
+                }
+
             }
         }
+
+
     }
 
-    public void DropItem(ItemSlot slot) {
+    public void DropItem(ItemSlot slot)
+    {
         Debug.Log("Dropping Item: " + slot.item.name);
 
         GameObject droppedItem = Instantiate(slot.item.interactableItem, camera.position, Quaternion.identity);
-        
+
         //apply correct values to the InteractableItem
         InteractableItem item = droppedItem.GetComponent<InteractableItem>();
         item.item = slot.item;
@@ -33,7 +57,8 @@ public class ItemHandler : MonoBehaviour
         droppedItem.GetComponent<Rigidbody>().AddForce(camera.forward * 5, ForceMode.Impulse);
     }
 
-    public void PickUpItem(GameObject item) {
+    public void PickUpItem(GameObject item)
+    {
         Debug.Log("Picking Up Item: " + item.GetComponent<InteractableItem>().item.name);
 
         //add item to inventory
