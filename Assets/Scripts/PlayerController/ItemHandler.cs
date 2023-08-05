@@ -8,6 +8,7 @@ public class ItemHandler : MonoBehaviour
     public ItemContainer playerInventory;
 
     private Transform _selection;
+    public Rigidbody playerRb;
 
     void Update()
     {
@@ -46,7 +47,7 @@ public class ItemHandler : MonoBehaviour
     {
         Debug.Log("Dropping Item: " + slot.item.name);
 
-        GameObject droppedItem = Instantiate(slot.item.interactableItem, camera.position, Quaternion.identity);
+        GameObject droppedItem = Instantiate(slot.item.interactableItem, camera.position + (camera.transform.forward * 2), Quaternion.identity);
 
         //apply correct values to the InteractableItem
         InteractableItem item = droppedItem.GetComponent<InteractableItem>();
@@ -54,7 +55,11 @@ public class ItemHandler : MonoBehaviour
         item.amount = slot.amount;
         item.condition = slot.condition;
 
-        droppedItem.GetComponent<Rigidbody>().AddForce(camera.forward * 5, ForceMode.Impulse);
+        Rigidbody itemRb = droppedItem.GetComponent<Rigidbody>();
+
+        itemRb.velocity = playerRb.velocity;
+        itemRb.AddForce(camera.transform.forward * 5, ForceMode.Impulse);
+
     }
 
     public void PickUpItem(GameObject item)

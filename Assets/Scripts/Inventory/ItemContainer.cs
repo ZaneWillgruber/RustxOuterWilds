@@ -82,7 +82,6 @@ public class ItemContainer : MonoBehaviour
         }
 
         items[index] = item;
-        items[index].AttachUI(UISlots[index]);
         
     }
 
