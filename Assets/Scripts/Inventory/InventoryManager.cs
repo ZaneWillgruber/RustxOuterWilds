@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
     public MouseLook mouseLook;
     public EnterShip enterShip;
     public ItemContainer inventory;
+    public GameObject cursor;
 
     bool inInventory = false;
 
@@ -40,6 +41,7 @@ public class InventoryManager : MonoBehaviour
 
         mouseLook.enabled = false;
         enterShip.enabled = false;
+        cursor.SetActive(false);
     }
 
     void ExitInventory()
@@ -54,5 +56,6 @@ public class InventoryManager : MonoBehaviour
 
         mouseLook.enabled = true;
         enterShip.enabled = true;
+        cursor.SetActive(true);
     }
 }
