@@ -17,3 +17,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a86d9222b19732b498bdf3a7206a00c9, type: 3}
   maxStack: 1
   maxCondition: 100
+  interactableItem: {fileID: 1409446365788607499, guid: fa077e6fa4b12a345a1800b64e87d2f1, type: 3}
+  isEquipable: 1
+  equiptableOffsets: {x: 0, y: 0, z: 0}

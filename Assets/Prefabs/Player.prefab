@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4740947391900187401}
   - component: {fileID: 7477967144223590850}
   - component: {fileID: -3357586711080894232}
+  - component: {fileID: 4119451598089369633}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -219,6 +220,7 @@ MonoBehaviour:
   mouseLook: {fileID: 3639594004511229876}
   enterShip: {fileID: 3639594004511229877}
   inventory: {fileID: 0}
+  cursor: {fileID: 0}
 --- !u!114 &-3357586711080894232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +236,18 @@ MonoBehaviour:
   camera: {fileID: 3639594004511229879}
   playerInventory: {fileID: 0}
   playerRb: {fileID: 3639594004172397950}
+--- !u!114 &4119451598089369633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639594004172397922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27840881a6bc7043a0ad3c6383ceabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3639594004511229880
 GameObject:
   m_ObjectHideFlags: 0

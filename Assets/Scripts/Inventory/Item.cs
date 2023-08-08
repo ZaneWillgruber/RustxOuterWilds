@@ -28,4 +28,7 @@ public class Item : ScriptableObject
 
     public GameObject interactableItem;
 
+    public bool isEquipable = false;
+    public Vector3 equiptableOffsets;
+
 }

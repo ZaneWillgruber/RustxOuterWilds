@@ -19,12 +19,13 @@ public class ItemContainer : MonoBehaviour
     public Color defaultColor;
     Color selectedColor = Color.green;
     int selectedIndex = -1;
+    EquiptItem equiptItemManager;
 
     public List<ItemSlot> items = new List<ItemSlot>();
 
     private void Start()
     {
-
+        equiptItemManager = FindObjectOfType<EquiptItem>();
         SlotPrefab = Resources.Load<GameObject>("Prefabs/UIItemSlot");
 
         for (int i = 0; i < maxSlots; i++)
@@ -81,12 +82,18 @@ public class ItemContainer : MonoBehaviour
                 UISlots[selectedIndex - 1].GetComponent<Image>().color = defaultColor;
             }
 
+            if(UISlots[selectedIndex].itemSlot.hasItem)
+            {
+                Debug.Log("Equipting Item");
+                EquiptItem();
+            }
+
             UISlots[selectedIndex].GetComponent<Image>().color = selectedColor;
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            selectedIndex++;
+            selectedIndex--;
             if (selectedIndex < 0)
             {
                 selectedIndex = maxSlots - 1;
@@ -98,9 +105,19 @@ public class ItemContainer : MonoBehaviour
                 UISlots[selectedIndex + 1].GetComponent<Image>().color = defaultColor;
             }
 
+            if(UISlots[selectedIndex].itemSlot.hasItem && items[selectedIndex].item.isEquipable)
+            {
+                Debug.Log("Equipting Item");
+                EquiptItem();
+            }
             UISlots[selectedIndex].GetComponent<Image>().color = selectedColor;
         }
 
+    }
+
+    void EquiptItem()
+    {
+        equiptItemManager.Equipt(items[selectedIndex].item);
     }
 
     public void OpenContainer()
