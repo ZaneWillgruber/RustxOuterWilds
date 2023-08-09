@@ -30,5 +30,7 @@ public class Item : ScriptableObject
 
     public bool isEquipable = false;
     public Vector3 equiptableOffsets;
+    public Vector3 equiptableRotation;
+    public GameObject handheld;
 
 }

@@ -15,7 +15,7 @@ public class ItemContainer : MonoBehaviour
     GameObject SlotPrefab;
     public bool isOpen = false;
     public bool isHotbar = false;
-    
+
     public Color defaultColor;
     Color selectedColor = Color.green;
     int selectedIndex = -1;
@@ -76,16 +76,20 @@ public class ItemContainer : MonoBehaviour
                 selectedIndex = 0;
                 UISlots[maxSlots - 1].GetComponent<Image>().color = defaultColor;
             }
-            
-            if(selectedIndex > 0)
+
+            if (selectedIndex > 0)
             {
                 UISlots[selectedIndex - 1].GetComponent<Image>().color = defaultColor;
             }
 
-            if(UISlots[selectedIndex].itemSlot.hasItem)
+            if (UISlots[selectedIndex].itemSlot.hasItem)
             {
                 Debug.Log("Equipting Item");
                 EquiptItem();
+            }
+            else
+            {
+                DequiptItem();
             }
 
             UISlots[selectedIndex].GetComponent<Image>().color = selectedColor;
@@ -99,17 +103,22 @@ public class ItemContainer : MonoBehaviour
                 selectedIndex = maxSlots - 1;
                 UISlots[0].GetComponent<Image>().color = defaultColor;
             }
-            
-            if(selectedIndex < maxSlots - 1)
+
+            if (selectedIndex < maxSlots - 1)
             {
                 UISlots[selectedIndex + 1].GetComponent<Image>().color = defaultColor;
             }
 
-            if(UISlots[selectedIndex].itemSlot.hasItem && items[selectedIndex].item.isEquipable)
+            if (UISlots[selectedIndex].itemSlot.hasItem && items[selectedIndex].item.isEquipable)
             {
                 Debug.Log("Equipting Item");
                 EquiptItem();
             }
+            else
+            {
+                DequiptItem();
+            }
+
             UISlots[selectedIndex].GetComponent<Image>().color = selectedColor;
         }
 
@@ -118,6 +127,11 @@ public class ItemContainer : MonoBehaviour
     void EquiptItem()
     {
         equiptItemManager.Equipt(items[selectedIndex].item);
+    }
+
+    void DequiptItem()
+    {
+        equiptItemManager.Dequipt();
     }
 
     public void OpenContainer()
