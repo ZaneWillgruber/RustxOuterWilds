@@ -20,3 +20,5 @@ MonoBehaviour:
   interactableItem: {fileID: 1409446365788607499, guid: fa077e6fa4b12a345a1800b64e87d2f1, type: 3}
   isEquipable: 1
   equiptableOffsets: {x: 0, y: 0, z: 0}
+  equiptableRotation: {x: 0, y: 0, z: 0}
+  handheld: {fileID: 3779140866832287632, guid: caec442d947faf041b197811a81077c3, type: 3}
