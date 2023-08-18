@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject
 {
-    
+    [Header("Item Info")]
     //name of the item
     public string itemName;
 
@@ -26,11 +26,15 @@ public class Item : ScriptableObject
     public bool isStackable { get { return maxStack > 1; } }
     public bool isDegradable { get { return maxCondition > -1; } }
 
+    [Header("Item Type")]
     public GameObject interactableItem;
 
+    [Header("Equiptable Informaton")]
     public bool isEquipable = false;
     public Vector3 equiptableOffsets;
     public Vector3 equiptableRotation;
     public GameObject handheld;
+    public AudioClip swingSound;
+    public AudioClip hitSound;
 
 }

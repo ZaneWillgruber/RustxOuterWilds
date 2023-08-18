@@ -22,3 +22,5 @@ MonoBehaviour:
   equiptableOffsets: {x: 0, y: 0, z: 0}
   equiptableRotation: {x: 0, y: 0, z: 0}
   handheld: {fileID: 3779140866832287632, guid: caec442d947faf041b197811a81077c3, type: 3}
+  swingSound: {fileID: 8300000, guid: 43f4a2ed17894c244a775cd4e152a546, type: 3}
+  hitSound: {fileID: 8300000, guid: d244afe5b6795aa47a8e9994dc0dfe62, type: 3}
