@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
     int attackCount;
 
     EquiptItem equiptItemHandler;
+    public ItemContainer playerInventory;
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +96,11 @@ public class Attack : MonoBehaviour
                 case "Harvestable":
                     Debug.Log("Harvesting Harvestable");
                     Harvestable harvestable = hit.collider.GetComponent<Harvestable>();
+                    
+                    ItemSlot itemToAdd = new ItemSlot(harvestable.yieldItem.itemName, harvestable.yieldAmount, -1);
+
+                    playerInventory.AddItem(itemToAdd);
+
                     break;
             }
         }
