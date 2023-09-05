@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3562267653597310305}
   - component: {fileID: 1624463315341728171}
   - component: {fileID: -6833120743758211353}
-  m_Layer: 0
+  - component: {fileID: -789636501965809685}
+  m_Layer: 7
   m_Name: woodenfoundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,3 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previewObject: {fileID: 976081240488114302, guid: 05bce6e8130ed094180fbce9a44f5a91, type: 3}
+--- !u!65 &-789636501965809685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976081240488114302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.25, y: 2.0231133, z: 2.25}
+  m_Center: {x: 0, y: 0.011556447, z: -0.00000011920929}

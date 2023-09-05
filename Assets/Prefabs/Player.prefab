@@ -436,9 +436,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42287a88005ce3e41a3ca4515c713414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildMode: 0
-  buildings:
-  - {fileID: 976081240488114302, guid: 56cdfa028e808dc478b9dfb35bb014fc, type: 3}
+  objects:
+  - name: Foundation
+    prefab: {fileID: 976081240488114302, guid: 56cdfa028e808dc478b9dfb35bb014fc, type: 3}
+    preview: {fileID: 976081240488114302, guid: 05bce6e8130ed094180fbce9a44f5a91, type: 3}
+    material: {fileID: 11400000, guid: 4857d11a9df427a4394b47923311eb4c, type: 2}
+    cost: 0
+  currentObject:
+    name: 
+    prefab: {fileID: 0}
+    preview: {fileID: 0}
+    material: {fileID: 0}
+    cost: 0
+  currentPreview: {fileID: 0}
+  cam: {fileID: 3639594004511229879}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 255
+  isBuilding: 0
 --- !u!1 &3639594004511229880
 GameObject:
   m_ObjectHideFlags: 0

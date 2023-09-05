@@ -5,70 +5,88 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
 
-    public bool buildMode = false;
+    public List<buildObjects> objects = new List<buildObjects>();
+    public buildObjects currentObject;
+    private Vector3 currentPos;
+    public Transform currentPreview;
+    public Transform cam;
+    public RaycastHit hit;
+    public LayerMask layerMask;
+    public bool isBuilding;
 
-    public List<GameObject> buildings = new List<GameObject>();
-
-    GameObject currentBuilding;
-    GameObject previewBuilding;
-
-    // Start is called before the first frame update
     void Start()
     {
-        currentBuilding = buildings[0];
+        currentObject = objects[0];
+        ChangeCurrentBuilding();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        BuildModeSwitch();
-        
-        if(!buildMode) return;
-        
-        SetCurrentBuilding();
-        BuildMode();
-    }
-
-    void BuildModeSwitch()
-    {
-        if(Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            if(buildMode)
-            {
-                buildMode = false; 
-                return;
-            }
-            else
-            {
-                buildMode = true;
-                return;
+            isBuilding = !isBuilding;
+        }
+
+        if (isBuilding)
+        {
+            StartPreview();
+            if(Input.GetMouseButtonDown(0)) {
+                Build();
             }
         }
     }
 
-    void SetCurrentBuilding(int index = 0)
+    public void ChangeCurrentBuilding()
     {
-        if(buildings.Count == 0) return;
-        if(index > buildings.Count - 1) return;
-
-        currentBuilding = buildings[index];
-        previewBuilding = currentBuilding.GetComponent<BuildObject>().previewObject;
+        GameObject curprev = Instantiate(currentObject.preview, currentPos, Quaternion.identity) as GameObject;
+        currentPreview = curprev.transform;
     }
 
-    void BuildMode()
+    public void StartPreview()
     {
-        if(currentBuilding == null) {
-            Debug.LogWarning("No building selected");
-            return;
-        }
-
-        GameObject preview = Instantiate(previewBuilding, transform.forward * 5, Quaternion.identity);
-
-        if (Input.GetMouseButtonDown(0))
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 10, layerMask))
         {
-            Debug.Log("Building");
+            if (hit.transform != this.transform)
+            {
+                ShowPreview(hit);
+            }
+        }
+        else
+        {
+            ShowPreviewFail(cam.position + (cam.forward * 10));
         }
 
-        Destroy(preview);
     }
+
+    public void ShowPreview(RaycastHit hit2)
+    {
+        currentPos = hit2.point;
+        currentPreview.position = currentPos;
+    }
+
+    public void ShowPreviewFail(Vector3 hit2)
+    {
+        currentPos = hit2;
+        currentPreview.position = currentPos;
+    }
+
+    public void Build() {
+        PreviewObject PO = currentPreview.GetComponent<PreviewObject>();
+        if(PO.isBuildable) {
+            Instantiate(currentObject.prefab, currentPos, Quaternion.identity);
+        }
+    }
+
+
 }
+
+[System.Serializable]
+public class buildObjects
+{
+    public string name;
+    public GameObject prefab;
+    public GameObject preview;
+    public Item material;
+    public int cost;
+}
+

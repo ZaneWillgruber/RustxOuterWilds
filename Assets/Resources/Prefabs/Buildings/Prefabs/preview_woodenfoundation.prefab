@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 486507626759660228}
   - component: {fileID: 3562267653597310305}
   - component: {fileID: 1624463315341728171}
-  - component: {fileID: -6833120743758211353}
-  m_Layer: 0
+  - component: {fileID: 5239381765745946824}
+  - component: {fileID: 660421950359038379}
+  - component: {fileID: 1720139827504367253}
+  m_Layer: 8
   m_Name: preview_woodenfoundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +84,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6833120743758211353
+--- !u!65 &5239381765745946824
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976081240488114302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.15, y: 2.0231133, z: 2.15}
+  m_Center: {x: 0, y: 0.011556447, z: -0.00000011920929}
+--- !u!54 &660421950359038379
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976081240488114302}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
+--- !u!114 &1720139827504367253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 976081240488114302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c4d3f750296b6448092cf887aad0a9, type: 3}
+  m_Script: {fileID: 11500000, guid: ffbe750fd8538d1439b17a15d7a379f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previewObject: {fileID: 0}
+  foundation: 1
+  col: []
+  valid: {fileID: 2100000, guid: b775610e3c1380344b9e0e9bd5dfdd62, type: 2}
+  invalid: {fileID: 2100000, guid: 0ef9d8e57c1de2445a3cd18c72f8435a, type: 2}
+  isBuildable: 0
