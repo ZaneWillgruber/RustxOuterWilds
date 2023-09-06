@@ -452,7 +452,7 @@ MonoBehaviour:
   cam: {fileID: 3639594004511229879}
   layerMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 136
   isBuilding: 0
 --- !u!1 &3639594004511229880
 GameObject:

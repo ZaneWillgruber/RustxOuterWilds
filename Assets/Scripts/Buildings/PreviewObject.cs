@@ -10,6 +10,7 @@ public class PreviewObject : MonoBehaviour
     public Material valid;
     public Material invalid;
     public bool isBuildable;
+    public bool RaycastSuccess = false;
 
     void Update() {
         ChangeColor();
@@ -30,7 +31,7 @@ public class PreviewObject : MonoBehaviour
     }
 
     public void ChangeColor() {
-        if(col.Count == 0) {
+        if(col.Count == 0 && RaycastSuccess) {
             isBuildable = true;
             GetComponent<Renderer>().material = valid;
         }
