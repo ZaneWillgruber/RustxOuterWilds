@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.15, y: 2.0231133, z: 2.15}
-  m_Center: {x: 0, y: 0.011556447, z: -0.00000011920929}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &660421950359038379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,3 +130,4 @@ MonoBehaviour:
   valid: {fileID: 2100000, guid: b775610e3c1380344b9e0e9bd5dfdd62, type: 2}
   invalid: {fileID: 2100000, guid: 0ef9d8e57c1de2445a3cd18c72f8435a, type: 2}
   isBuildable: 0
+  RaycastSuccess: 0

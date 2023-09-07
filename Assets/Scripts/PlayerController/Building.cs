@@ -36,7 +36,8 @@ public class Building : MonoBehaviour
         {
             refPlanet = gravHandler.referencePlanet;
             StartPreview();
-            if(Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0))
+            {
                 Build();
             }
         }
@@ -84,9 +85,11 @@ public class Building : MonoBehaviour
         currentPreview.position = currentPos;
     }
 
-    public void Build() {
+    public void Build()
+    {
         PreviewObject PO = currentPreview.GetComponent<PreviewObject>();
-        if(PO.isBuildable) {
+        if (PO.isBuildable)
+        {
             GameObject obj = Instantiate(currentObject.prefab, currentPos, currentRot);
             obj.transform.parent = refPlanet.transform;
         }
