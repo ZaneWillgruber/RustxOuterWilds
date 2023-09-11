@@ -56,7 +56,15 @@ public class Building : MonoBehaviour
             if (hit.transform != this.transform)
             {
                 currentPreview.GetComponent<PreviewObject>().RaycastSuccess = true;
-                ShowPreview(hit);
+                Transform closest = ClosestBuilding(hit.point, 10);
+                if(closest != null)
+                {
+                    ShowSnapPreview(closest, hit);
+                }
+                else
+                {
+                    ShowPreview(hit);
+                }
             }
         }
         else
@@ -67,6 +75,27 @@ public class Building : MonoBehaviour
 
     }
 
+    public void ShowSnapPreview(Transform closest, RaycastHit hit2)
+    {
+        Vector3 norm = (hit2.point - closest.position).normalized;
+        //take to normalized vector and round it to the nearest local axis of closest building
+        if (Mathf.Abs(norm.x) > Mathf.Abs(norm.y) && Mathf.Abs(norm.x) > Mathf.Abs(norm.z))
+        {
+            norm = new Vector3(Mathf.Round(norm.x), 0, 0);
+        }
+        else if (Mathf.Abs(norm.y) > Mathf.Abs(norm.x) && Mathf.Abs(norm.y) > Mathf.Abs(norm.z))
+        {
+            norm = new Vector3(0, Mathf.Round(norm.y), 0);
+        }
+        else if (Mathf.Abs(norm.z) > Mathf.Abs(norm.x) && Mathf.Abs(norm.z) > Mathf.Abs(norm.y))
+        {
+            norm = new Vector3(0, 0, Mathf.Round(norm.z));
+        }
+        
+        currentPos = closest.position + (norm * 2);
+        currentPreview.position = currentPos;
+    }
+    
     public void ShowPreview(RaycastHit hit2)
     {
         currentPos = hit2.point;
@@ -93,6 +122,27 @@ public class Building : MonoBehaviour
             GameObject obj = Instantiate(currentObject.prefab, currentPos, currentRot);
             obj.transform.parent = refPlanet.transform;
         }
+    }
+
+    public Transform ClosestBuilding(Vector3 pos, float radius)
+    {
+        //find closest building in radius
+        Collider[] hitColliders = Physics.OverlapSphere(pos, radius);
+        Transform closest = null;
+        float closestDist = Mathf.Infinity;
+        foreach (Collider c in hitColliders)
+        {
+            if (c.transform != this.transform && c.transform.tag == "Building")
+            {
+                float dist = Vector3.Distance(pos, c.transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closest = c.transform;
+                }
+            }
+        }
+        return closest;
     }
 
 
